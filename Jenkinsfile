@@ -5,7 +5,7 @@ pipeline {
         stage("Restore dependencies") {
             when {
                 expression {
-                    env.BRANCH_NAME == 'origin/main'
+                    return env.BRANCH_NAME == 'origin/main'
                 }
             }
             steps {
@@ -16,7 +16,7 @@ pipeline {
         stage("Build") {
             when {
                 expression {
-                    env.BRANCH_NAME == 'origin/main'
+                    return env.BRANCH_NAME == 'origin/main'
                 }
             }
             steps {
@@ -27,7 +27,7 @@ pipeline {
         stage("Test") {
             when {
                 expression {
-                    env.BRANCH_NAME == 'origin/main'
+                    return env.BRANCH_NAME == 'origin/main'
                 }
             }
             steps {
