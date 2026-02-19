@@ -2,17 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage("Check Branch") {
-            when {
-                expression {
-                    env.BRANCH_NAME == 'main'
-                }
-            }
-            steps {
-                echo "Running on main branch"
-            }
-        }
-
         stage("Restore dependencies") {
             when {
                 expression {
