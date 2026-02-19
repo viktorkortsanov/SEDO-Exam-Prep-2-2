@@ -1,36 +1,34 @@
 pipeline {
     agent any
-
-    stages {
-        stage("Restore dependencies") {
+    
+    stages{
+        stage("Restore dependencies"){
             when {
                 expression {
-                    env.BRANCH_NAME == 'main'
+                    return env.GIT_BRANCH == 'origin/main'
                 }
             }
-            steps {
+            steps{
                 bat "dotnet restore"
             }
         }
-
-        stage("Build") {
+        stage("Build"){
             when {
                 expression {
-                    env.BRANCH_NAME == 'main'
+                    return env.GIT_BRANCH == 'origin/main'
                 }
             }
-            steps {
+            steps{
                 bat "dotnet build --no-restore"
             }
         }
-
-        stage("Test") {
+        stage("Test"){
             when {
                 expression {
-                    env.BRANCH_NAME == 'main'
+                    return env.GIT_BRANCH == 'origin/main'
                 }
             }
-            steps {
+            steps{
                 bat "dotnet test --no-build --verbosity normal"
             }
         }
